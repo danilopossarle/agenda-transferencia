@@ -28,23 +28,15 @@ public abstract class GenericDAO<BO extends Persistable> implements DAO<BO> {
     private EntityManager entityManager;
 
     /**
-     * @return the {@link EntityManager}
-     */
-    protected EntityManager getEntityManager() {
-        return this.entityManager;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
     public List<BO> findAll() {
-        EntityManager entityManager = this.getEntityManager();
-        CriteriaBuilder critBuilder = entityManager.getCriteriaBuilder();
+        CriteriaBuilder critBuilder = this.entityManager.getCriteriaBuilder();
         CriteriaQuery<BO> criteriaQuery = critBuilder.createQuery(this.getPersistableClass());
         Root<BO> variableRoot = criteriaQuery.from(this.getPersistableClass());
         criteriaQuery.select(variableRoot);
-        return entityManager.createQuery(criteriaQuery).getResultList();
+        return this.entityManager.createQuery(criteriaQuery).getResultList();
     }
 
     /**
@@ -63,7 +55,7 @@ public abstract class GenericDAO<BO extends Persistable> implements DAO<BO> {
      */
     @Override
     public void save(BO entity) {
-        this.getEntityManager().persist(entity);
+        this.entityManager.persist(entity);
     }
 
     /**
@@ -72,7 +64,7 @@ public abstract class GenericDAO<BO extends Persistable> implements DAO<BO> {
      * @return {@link Criteria}
      */
     protected Criteria createCriteria() {
-        Session session = this.getEntityManager().unwrap(Session.class);
+        Session session = this.entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(this.getPersistableClass());
         return criteria;
     }
