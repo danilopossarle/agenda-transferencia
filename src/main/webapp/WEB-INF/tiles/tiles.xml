@@ -5,7 +5,7 @@
 <tiles-definitions>
 	<!-- Templates -->
 	<definition name="estrutura" template="/WEB-INF/tiles/layout/estrutura.jsp">
-		<put-attribute name="title" value="Agenda de Tranferências - Danilo Possarle" />
+		<put-attribute name="title" value="Agendamento de Tranferências - Danilo Possarle" />
 		<put-attribute name="header" value="/WEB-INF/tiles/view/header.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/tiles/view/footer.jsp" />
