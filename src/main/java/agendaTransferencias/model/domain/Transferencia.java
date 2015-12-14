@@ -10,8 +10,11 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import agendaTransferencias.utils.TipoTransferencia;
+
+import com.sun.istack.internal.NotNull;
 
 /**
  * Entidade que representa uma transferência dentro da aplicação
@@ -41,6 +44,7 @@ public class Transferencia extends Persistable {
      * @return the contaOrigem
      */
     @Column(name = "CTA_ORIGEM")
+    @NotNull
     public String getContaOrigem() {
         return this.contaOrigem;
     }
@@ -56,6 +60,7 @@ public class Transferencia extends Persistable {
      * @return the contaDestino
      */
     @Column(name = "CTA_DESTINO")
+    @NotNull
     public String getContaDestino() {
         return this.contaDestino;
     }
@@ -71,6 +76,7 @@ public class Transferencia extends Persistable {
      * @return the valor
      */
     @Column(name = "VALOR")
+    @NotNull
     public BigDecimal getValor() {
         return this.valor;
     }
@@ -86,6 +92,7 @@ public class Transferencia extends Persistable {
      * @return the taxa
      */
     @Column(name = "TAXA")
+    @NotNull
     public BigDecimal getTaxa() {
         return this.taxa;
     }
@@ -102,22 +109,25 @@ public class Transferencia extends Persistable {
      */
     @Column(name = "DATA_CADASTRO")
     @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    @NotNull
     public DateTime getDataCadastro() {
         return this.dataCadastro;
     }
-    
+
     /**
      * @param dataCadastro the dataCadastro to set
      */
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     public void setDataCadastro(DateTime dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
-    
+        this.dataCadastro = dataCadastro;
+    }
+
     /**
      * @return the dataTransferencia
      */
     @Column(name = "DATA_TRANSFERENCIA")
     @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    @NotNull
     public DateTime getDataTransferencia() {
         return this.dataTransferencia;
     }
@@ -125,6 +135,7 @@ public class Transferencia extends Persistable {
     /**
      * @param dataTransferencia the dataTransferencia to set
      */
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     public void setDataTransferencia(DateTime dataTransferencia) {
         this.dataTransferencia = dataTransferencia;
     }
@@ -134,6 +145,7 @@ public class Transferencia extends Persistable {
      */
     @Column(name = "TIPO")
     @Enumerated(EnumType.STRING)
+    @NotNull
     public TipoTransferencia getTipo() {
         return this.tipo;
     }
