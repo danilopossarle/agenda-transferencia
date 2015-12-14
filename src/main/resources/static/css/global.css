@@ -57,6 +57,20 @@ body>.container {
 	padding-left: 10px;
 }
 
+.header .wrap .menu {
+	margin-top: 7px;
+	width: 100%;
+}
+
+.header .wrap .menu .item-menu {
+	font-size: 14px;
+	margin-right: 10px;
+}
+
+.header .wrap .menu .item-menu a:hover {
+	color: #5e6066;
+}
+
 .header .wrap .right {
 	padding-top: 16px;
 	width: 910px;
@@ -65,6 +79,37 @@ body>.container {
 .container .content {
 	padding-bottom: 110px;
 	padding-top: 20px;
+}
+
+.container .content .wrap .form-fields {
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border: 1px solid;
+	padding: 10px 0;
+	margin: 20px 0px;
+}
+
+.container .content .wrap .form-fields table {
+	width: 100%;
+	padding-left: 45px;
+}
+
+.container .content .wrap .form-fields table td {
+	padding: 5px 0 !important;
+}
+
+.container .content .wrap .form-fields table td.label {
+	width: 200px;
+}
+
+.container .content .wrap .form-fields table td input[type="text"] {
+	width: 250px;
+}
+
+.container .content .wrap .form-fields .buttons {
+	text-align: right;
+	padding: 10px 60px 5px 0 !important;
 }
 
 .footer {

@@ -5,7 +5,8 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href='<c:url value="/css/global.css"/>' />
+	<link rel="stylesheet" href='/css/global.css' />
+	<tiles:insertAttribute name="scriptsCss" />
 	<title><tiles:getAsString name="title" /></title>
 </head>
 <body>
@@ -13,7 +14,12 @@
 		<tiles:insertAttribute name="header" />
 		<div class="content">
 			<div class="wrap">
-				<div id="feedback"></div>
+				<c:if test="${not empty msgSuccess}">
+					<div class="success">Teste</div>
+				</c:if>
+				<c:if test="${not empty msgError}">
+					<div class="error"></div>
+				</c:if>
 				<tiles:insertAttribute name="body" />
 			</div>
 		</div>

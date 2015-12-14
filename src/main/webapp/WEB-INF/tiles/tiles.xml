@@ -7,17 +7,18 @@
 	<definition name="estrutura" template="/WEB-INF/tiles/layout/estrutura.jsp">
 		<put-attribute name="title" value="Agendamento de Tranferências - Danilo Possarle" />
 		<put-attribute name="header" value="/WEB-INF/tiles/view/header.jsp" />
-		<put-attribute name="body" value="" />
+		<put-attribute name="scriptsCss" value=""/>
 		<put-attribute name="footer" value="/WEB-INF/tiles/view/footer.jsp" />
 	</definition>
 	<!-- Páginas -->
 	<definition name="home" extends="estrutura">
 		<put-attribute name="body" value="/WEB-INF/tiles/view/home/index.jsp" />
 	</definition>
-	<definition name="consulta" extends="estrutura">
-		<put-attribute name="body" value="/WEB-INF/tiles/view/consulta/index.jsp" />
+	<definition name="consutlaTransferencias" extends="estrutura">
+		<put-attribute name="scriptsCss" value="/WEB-INF/tiles/view/transferencia/consulta/scriptsCss.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/tiles/view/transferencia/consulta/index.jsp" />
 	</definition>
-	<definition name="cadastro" extends="estrutura">
-		<put-attribute name="body" value="/WEB-INF/tiles/view/cadastro/index.jsp" />
+	<definition name="cadastroTransferencia" extends="estrutura">
+		<put-attribute name="body" value="/WEB-INF/tiles/view/transferencia/cadastro/index.jsp" />
 	</definition>
 </tiles-definitions>

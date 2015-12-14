@@ -1,11 +1,14 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="header">
 	<div class="wrap">
 		<div class="left">
-			<img src="<c:url value="/imgs/logo.png"/>">
+			<a href="/"><img src="/imgs/logo.png"></a>
 		</div>
 		<div class="right">
-			<h1>Agendamento de Transferências</h1>
+			<h2>Agendamento de Transferências</h2>
+			<div class="menu">
+				<span class="item-menu"><a href="/">Home</a></span>
+				<span class="item-menu"><a href="/transferencias">Transferências</a></span>
+			</div>
 		</div>
 	</div>
 </div>

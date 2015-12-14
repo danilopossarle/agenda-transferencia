@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+
+.wrap .search-results {
+ 	padding: 10px 0;
+	margin: 20px 0px;
+ 	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+ 	border: 1px solid;
+	background-color: #f0f0f0;
+}
+
+.wrap .search-results table {
+/* 	border-collapse: collapse; */
+	width: 100%;
+	height: 100%;
+	background-color: #FFF;
+/* 	border-left: 1px solid; */
+/* 	border-right: 1px solid; */
+}
+
+.wrap .search-results table td, .wrap .search-results table th {
+/* 	border-left: 1px solid; */
+/* 	border-right: 1px solid; */
+	padding: 0 15px 10px !important;
+}
+
+.wrap .search-results table thead tr {
+	background-color: #f0f0f0;
+}

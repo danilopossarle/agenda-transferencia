@@ -31,7 +31,7 @@ public class Transferencia extends Persistable {
 
     private BigDecimal taxa;
 
-    private DateTime dataCadastro;
+    private DateTime dataCadastro = new DateTime();
 
     private DateTime dataTransferencia;
 
@@ -105,14 +105,14 @@ public class Transferencia extends Persistable {
     public DateTime getDataCadastro() {
         return this.dataCadastro;
     }
-
+    
     /**
      * @param dataCadastro the dataCadastro to set
      */
     public void setDataCadastro(DateTime dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
+		this.dataCadastro = dataCadastro;
+	}
+    
     /**
      * @return the dataTransferencia
      */
