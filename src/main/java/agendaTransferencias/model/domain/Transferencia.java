@@ -13,6 +13,8 @@ import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 import agendaTransferencias.utils.TipoTransferencia;
 
@@ -45,7 +47,7 @@ public class Transferencia extends Persistable {
      */
     @Column(name = "CTA_ORIGEM")
     @NotNull
-    @NotEmpty(message="O campo Conta Origem obrigatório.")
+    @NotEmpty(message = "O campo Conta Origem obrigatório.")
     public String getContaOrigem() {
         return this.contaOrigem;
     }
@@ -62,7 +64,7 @@ public class Transferencia extends Persistable {
      */
     @Column(name = "CTA_DESTINO")
     @NotNull
-    @NotEmpty(message="O campo Conta Destino obrigatório.")
+    @NotEmpty(message = "O campo Conta Destino obrigatório.")
     public String getContaDestino() {
         return this.contaDestino;
     }
@@ -78,7 +80,8 @@ public class Transferencia extends Persistable {
      * @return the valor
      */
     @Column(name = "VALOR")
-    @NotNull(message="Campo Valor é obrigatório")
+    @NotNull(message = "Campo Valor é obrigatório")
+    @NumberFormat(style = Style.CURRENCY)
     public BigDecimal getValor() {
         return this.valor;
     }
@@ -94,7 +97,8 @@ public class Transferencia extends Persistable {
      * @return the taxa
      */
     @Column(name = "TAXA")
-    @NotNull(message="Campo Taxa é obrigatório")
+    @NotNull(message = "Campo Taxa é obrigatório")
+    @NumberFormat(style = Style.CURRENCY)
     public BigDecimal getTaxa() {
         return this.taxa;
     }
@@ -111,7 +115,7 @@ public class Transferencia extends Persistable {
      */
     @Column(name = "DATA_CADASTRO")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    @NotNull(message="Campo Data Cadastro é obrigatório")
+    @NotNull(message = "Campo Data Cadastro é obrigatório")
     public DateTime getDataCadastro() {
         return this.dataCadastro;
     }
@@ -129,7 +133,7 @@ public class Transferencia extends Persistable {
      */
     @Column(name = "DATA_TRANSFERENCIA")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    @NotNull(message="Campo Data Transferencia é obrigatório")
+    @NotNull(message = "Campo Data Transferencia é obrigatório")
     public DateTime getDataTransferencia() {
         return this.dataTransferencia;
     }
@@ -147,7 +151,7 @@ public class Transferencia extends Persistable {
      */
     @Column(name = "TIPO")
     @Enumerated(EnumType.STRING)
-    @NotNull(message="Campo Tipo é obrigatório")
+    @NotNull(message = "Campo Tipo é obrigatório")
     public TipoTransferencia getTipo() {
         return this.tipo;
     }

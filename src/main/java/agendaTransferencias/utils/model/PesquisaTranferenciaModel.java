@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 import agendaTransferencias.utils.TipoTransferencia;
 
@@ -16,104 +18,103 @@ import agendaTransferencias.utils.TipoTransferencia;
  */
 public class PesquisaTranferenciaModel implements Serializable {
 
-	private String contaOrigem;
-	
-	private String contaDestino;
-	
-	private DateTime dataTransferencia;
-	
-	private DateTime dataCadastro;
-	
-	private BigDecimal valor;
-	
-	private TipoTransferencia tipo;
+    private String contaOrigem;
 
-	/**
-	 * @return the contaOrigem
-	 */
-	public String getContaOrigem() {
-		return contaOrigem;
-	}
+    private String contaDestino;
 
-	/**
-	 * @param contaOrigem the contaOrigem to set
-	 */
-	public void setContaOrigem(String contaOrigem) {
-		this.contaOrigem = contaOrigem;
-	}
+    private DateTime dataTransferencia;
 
-	/**
-	 * @return the contaDestino
-	 */
-	public String getContaDestino() {
-		return contaDestino;
-	}
+    private DateTime dataCadastro;
 
-	/**
-	 * @param contaDestino the contaDestino to set
-	 */
-	public void setContaDestino(String contaDestino) {
-		this.contaDestino = contaDestino;
-	}
+    @NumberFormat(style = Style.CURRENCY)
+    private BigDecimal valor;
 
-	/**
-	 * @return the dataTransferencia
-	 */
-	public DateTime getDataTransferencia() {
-		return dataTransferencia;
-	}
+    private TipoTransferencia tipo;
 
-	/**
-	 * @param dataTransferencia the dataTransferencia to set
-	 */
+    /**
+     * @return the contaOrigem
+     */
+    public String getContaOrigem() {
+        return this.contaOrigem;
+    }
+
+    /**
+     * @param contaOrigem the contaOrigem to set
+     */
+    public void setContaOrigem(String contaOrigem) {
+        this.contaOrigem = contaOrigem;
+    }
+
+    /**
+     * @return the contaDestino
+     */
+    public String getContaDestino() {
+        return this.contaDestino;
+    }
+
+    /**
+     * @param contaDestino the contaDestino to set
+     */
+    public void setContaDestino(String contaDestino) {
+        this.contaDestino = contaDestino;
+    }
+
+    /**
+     * @return the dataTransferencia
+     */
+    public DateTime getDataTransferencia() {
+        return this.dataTransferencia;
+    }
+
+    /**
+     * @param dataTransferencia the dataTransferencia to set
+     */
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-	public void setDataTransferencia(DateTime dataTransferencia) {
-		this.dataTransferencia = dataTransferencia;
-	}
+    public void setDataTransferencia(DateTime dataTransferencia) {
+        this.dataTransferencia = dataTransferencia;
+    }
 
-	/**
-	 * @return the dataCadastro
-	 */
-	public DateTime getDataCadastro() {
-		return dataCadastro;
-	}
+    /**
+     * @return the dataCadastro
+     */
+    public DateTime getDataCadastro() {
+        return this.dataCadastro;
+    }
 
-	/**
-	 * @param dataCadastro the dataCadastro to set
-	 */
+    /**
+     * @param dataCadastro the dataCadastro to set
+     */
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-	public void setDataCadastro(DateTime dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
+    public void setDataCadastro(DateTime dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
 
-	/**
-	 * @return the valor
-	 */
-	public BigDecimal getValor() {
-		return valor;
-	}
+    /**
+     * @return the valor
+     */
+    public BigDecimal getValor() {
+        return this.valor;
+    }
 
-	/**
-	 * @param valor the valor to set
-	 */
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
-	}
+    /**
+     * @param valor the valor to set
+     */
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
 
-	/**
-	 * @return the tipo
-	 */
-	public TipoTransferencia getTipo() {
-		return tipo;
-	}
+    /**
+     * @return the tipo
+     */
+    public TipoTransferencia getTipo() {
+        return this.tipo;
+    }
 
-	/**
-	 * @param tipo the tipo to set
-	 */
-	public void setTipo(TipoTransferencia tipo) {
-		this.tipo = tipo;
-	}
-	
-	
-	
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(TipoTransferencia tipo) {
+        this.tipo = tipo;
+    }
+
 }

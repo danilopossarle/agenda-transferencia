@@ -2,6 +2,8 @@ package agendaTransferencias.controller.transferencia;
 
 import static agendaTransferencias.utils.TipoTransferenciaUtils.getTipoTransferenciaChoices;
 
+import java.math.BigDecimal;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import agendaTransferencias.model.domain.Transferencia;
@@ -77,5 +80,11 @@ public class CadastroTransferenciaController {
             }
         }
         return this.cadastroTransferencia(model);
+    }
+
+    @RequestMapping(value = "calcularTaxa", method = RequestMethod.POST)
+    @ResponseBody
+    public BigDecimal calculaTaxa(Transferencia transferencia) {
+        return this.transferenciaService.calculaTaxa(transferencia);
     }
 }

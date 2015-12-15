@@ -54,6 +54,9 @@ public class CalculadoraTaxaFactory {
      * @return {@link CalculadoraTaxa} para o {@link TipoTransferencia} informado ou nulo caso não encontre nenhuma calculadora
      */
     public CalculadoraTaxa calculadoraPara(TipoTransferencia tipoTransferencia) {
+        if (tipoTransferencia == null) {
+            return null;
+        }
         return this.calculadorasMap.get(tipoTransferencia);
     }
 }

@@ -39,8 +39,8 @@
 					</td>
 					<td class="label"><label for="valor">Valor:</label></td>
 					<td>
-						<sf:input path="valor" cssClass="money" /><br/>
-						<sf:errors path="valor" cssClass="error"/>
+						<sf:input path="valor" /><br/>
+						<sf:errors path="valor" cssClass="error valor"/>
 					</td>
 				</tr>
 				<tr>

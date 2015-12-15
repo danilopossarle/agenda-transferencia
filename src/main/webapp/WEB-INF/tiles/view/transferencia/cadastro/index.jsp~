@@ -42,7 +42,7 @@
 				<tr>
 					<td class="label"><label for="taxa">Taxa:</label></td>
 					<td>
-						<sf:input path="taxa" readonly="true" cssClass="money" /><br/>
+						<sf:input path="taxa" readonly="true" /><br/>
 						<sf:errors path="taxa" cssClass="error subtext"/>
 					</td>
 				</tr>
