@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import agendaTransferencias.model.dao.TransferenciaDAO;
 import agendaTransferencias.model.domain.Transferencia;
@@ -46,8 +47,20 @@ public class TransferenciaService {
 	 * 
 	 * @param transferencia {@link Transferencia}
 	 */
+    @Transactional
 	public void save(Transferencia transferencia) {
 		this.transferenciaDAO.save(transferencia);
+	}
+
+    /**
+     * Remove uma transferência da base de dados.
+     * 
+     * @param idTransferencia o id da transferência que deve ser removida da base
+     */
+    @Transactional
+	public void remove(Long idTransferencia) {
+		this.transferenciaDAO.remove(idTransferencia);
+		
 	}
 
 }

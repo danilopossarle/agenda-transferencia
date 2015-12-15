@@ -52,10 +52,10 @@ public class TransferenciaDAO extends GenericDAO<Transferencia> {
 		if (dataCadastro != null) {
 			criteria.add(Restrictions.eq("dataCadastro", dataCadastro));
 		}
-		if (isEmpty(contaOrigem)) {
+		if (!isEmpty(contaOrigem)) {
 			criteria.add(Restrictions.eq("contaOrigem", contaOrigem));
 		}
-		if (isEmpty(contaDestino)) {
+		if (!isEmpty(contaDestino)) {
 			criteria.add(Restrictions.eq("contaDestino", contaDestino));
 		}
 		if (valor != null) {

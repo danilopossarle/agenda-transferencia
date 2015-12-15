@@ -34,6 +34,21 @@ public interface DAO<BO extends Persistable> {
      * @param entity entidade que deve ser salva
      */
     void save(BO entity);
+    
+    /**
+     * Remove a entidade informada da base
+     * 
+     * @param entity entidade que deve ser removida
+     */
+    void remove(BO entity);
+    
+
+    /**
+     * Remove a entidade informada da base
+     * 
+     * @param id o id da entidade a ser removida
+     */
+    void remove(Serializable id);
 
     /**
      * Recupera a classe do BO

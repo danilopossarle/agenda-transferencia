@@ -11,38 +11,39 @@
 					</td>
 					<td class="label"><label for="dataTransferencia">Data da Transferência:</label></td>
 					<td>
-						<sf:input path="dataTransferencia" /><br/>
+						<sf:input path="dataTransferencia" cssClass="data" /><br/>
 						<sf:errors path="dataTransferencia" cssClass="error subtext"/>
 					</td>
 				</tr>
 				<tr>
 					<td class="label" class="label"><label for="contaOrigem">Conta Origem:</label></td>
 					<td>
-						<sf:input path="contaOrigem" /><br/>
+						<sf:input path="contaOrigem" cssClass="conta" /><br/>
 						<sf:errors path="contaOrigem" cssClass="error subtext"/>
 					</td>
 					<td class="label"><label for="contaDestino">Conta Destino:</label></td>
 					<td>
-						<sf:input path="contaDestino" /><br/>
+						<sf:input path="contaDestino" cssClass="conta" /><br/>
 						<sf:errors path="contaDestino" cssClass="error subtext"/>
 					</td>
 				</tr>
 				<tr>
-					<td class="label"><label for="tipo">Tipo:</label></td>
-					<td>
-						<sf:input path="tipo" /><br/>
-						<sf:errors path="tipo" cssClass="error subtext"/>
-					</td>
 					<td class="label"><label for="valor">Valor:</label></td>
 					<td>
 						<sf:input path="valor" /><br/>
 						<sf:errors path="valor" cssClass="error subtext"/>
+					</td>
+					<td class="label"><label for="tipo">Tipo:</label></td>
+					<td>
+						<sf:select path="tipo" items="${tiposTransferencia}" /><br/>
+						<sf:errors path="tipo" cssClass="error subtext"/>
 					</td>
 				</tr>
 				<tr>
 					<td class="label"><label for="taxa">Taxa:</label></td>
 					<td>
 						<sf:input path="taxa" disabled="true"/>
+						<sf:errors path="taxa" cssClass="error subtext"/>
 					</td>
 				</tr>
 				<tr>

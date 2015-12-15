@@ -57,6 +57,22 @@ public abstract class GenericDAO<BO extends Persistable> implements DAO<BO> {
     public void save(BO entity) {
         this.entityManager.persist(entity);
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void remove(BO entity) {
+    	this.entityManager.remove(entity);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void remove(Serializable id) {
+    	this.remove(this.findById(id));
+    }
 
     /**
      * Cria uma criteria.

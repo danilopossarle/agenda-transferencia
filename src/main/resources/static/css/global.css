@@ -25,6 +25,10 @@ a {
 	height: 100%;
 }
 
+.wrap #feedback {
+	margin-bottom: 10px;
+}
+
 .wrap .subtext {
 	font-size: 12px;
 }

@@ -1,38 +1,39 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
 <div>
 	<p>Consulta de transferências</p>
 	<div class="form-fields">
-		<sf:form modelAttribute="pesquisaModel" action="realizarPesquisaTransferencia" method="POST">
+		<sf:form modelAttribute="pesquisaModel" action="/realizarPesquisaTransferencia" method="POST">
 			<table>
 				<tr>
 					<td class="label" class="label"><label for="contaOrigem">Conta Origem:</label></td>
 					<td>
-						<sf:input path="contaOrigem" /><br/>
+						<sf:input path="contaOrigem" cssClass="conta" /><br/>
 						<sf:errors path="contaOrigem" cssClass="error"/>
 					</td>
 					<td class="label"><label for="contaDestino">Conta Destino:</label></td>
 					<td>
-						<sf:input path="contaDestino" /><br/>
+						<sf:input path="contaDestino" cssClass="conta" /><br/>
 						<sf:errors path="contaDestino" cssClass="error"/>
 					</td>
 				</tr>
 				<tr>
 					<td class="label"><label for="dataTransferencia">Data da Transferência:</label></td>
 					<td>
-						<sf:input path="dataTransferencia" /><br/>
+						<sf:input path="dataTransferencia" cssClass="data" /><br/>
 						<sf:errors path="dataTransferencia" cssClass="error"/>
 					</td>
 					<td class="label"><label for="dataCadastro">Data de Cadastro:</label></td>
 					<td>
-						<sf:input path="dataCadastro" /><br/>
+						<sf:input path="dataCadastro" cssClass="data" /><br/>
 						<sf:errors path="dataCadastro" cssClass="error"/>
 					</td>
 				</tr>
 				<tr>
 					<td class="label"><label for="tipo">Tipo:</label></td>
 					<td>
-						<sf:input path="tipo" /><br/>
+						<sf:select path="tipo" items="${tiposTransferencia}" /><br/>
 						<sf:errors path="tipo" cssClass="error"/>
 					</td>
 					<td class="label"><label for="valor">Valor:</label></td>
@@ -69,18 +70,15 @@
 				<tbody>
 					<c:forEach items="${transferencias}" var="transf">
 						<tr>
-							<td>${transf.dataCadastro}<td>
-							<td>${transf.dataTransferencia}<td>
-							<td>${transf.contaOrigem}<td>
-							<td>${transf.contaDestino}<td>
-							<td>${transf.tipo}<td>
-							<td>${transf.valor}<td>
-							<td>${transf.taxa}<td>
+							<td><joda:format pattern="dd/MM/yyyy" value="${transf.dataCadastro}" /></td>
+							<td><joda:format pattern="dd/MM/yyyy" value="${transf.dataTransferencia}" /></td>
+							<td>${transf.contaOrigem}</td>
+							<td>${transf.contaDestino}</td>
+							<td>${transf.tipo}</td>
+							<td>${transf.valor}</td>
+							<td>${transf.taxa}</td>
 							<td>
-								<a href="/editarTransferencia/id=${transferencia.id}" title="Editar">
-									<img src="/imgs/editBtn.png"/>
-								</a>
-								<a href="/excluirTransferencia/id=${transferencia.id}" title="Excluir">
+								<a href="/excluirTransferencia/?id=${transf.id}" title="Excluir">
 									<img src="/imgs/deleteBtn.png"/>
 								</a>
 							</td>

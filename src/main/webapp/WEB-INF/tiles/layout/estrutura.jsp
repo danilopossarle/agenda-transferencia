@@ -15,10 +15,10 @@
 		<div class="content">
 			<div class="wrap">
 				<c:if test="${not empty msgSuccess}">
-					<div class="success">Teste</div>
+					<div id="feedback" class="success">${msgSuccess}</div>
 				</c:if>
 				<c:if test="${not empty msgError}">
-					<div class="error"></div>
+					<div id="feedback" class="error">${msgError}</div>
 				</c:if>
 				<tiles:insertAttribute name="body" />
 			</div>

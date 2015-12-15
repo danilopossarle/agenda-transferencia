@@ -11,18 +11,22 @@
 }
 
 .wrap .search-results table {
-/* 	border-collapse: collapse; */
 	width: 100%;
 	height: 100%;
 	background-color: #FFF;
-/* 	border-left: 1px solid; */
-/* 	border-right: 1px solid; */
 }
 
-.wrap .search-results table td, .wrap .search-results table th {
-/* 	border-left: 1px solid; */
-/* 	border-right: 1px solid; */
+.wrap .search-results table th {
 	padding: 0 15px 10px !important;
+}
+
+.wrap .search-results table td {
+	padding: 0 15px 10px !important;
+	text-align: center;
+}
+
+.wrap .search-results table td img {
+	margin-top:5px !important;
 }
 
 .wrap .search-results table thead tr {

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import agendaTransferencias.utils.TipoTransferencia;
 
@@ -65,6 +66,7 @@ public class PesquisaTranferenciaModel implements Serializable {
 	/**
 	 * @param dataTransferencia the dataTransferencia to set
 	 */
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
 	public void setDataTransferencia(DateTime dataTransferencia) {
 		this.dataTransferencia = dataTransferencia;
 	}
@@ -79,6 +81,7 @@ public class PesquisaTranferenciaModel implements Serializable {
 	/**
 	 * @param dataCadastro the dataCadastro to set
 	 */
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
 	public void setDataCadastro(DateTime dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}

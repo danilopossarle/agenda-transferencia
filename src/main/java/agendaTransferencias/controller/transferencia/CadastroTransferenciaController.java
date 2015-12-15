@@ -1,5 +1,7 @@
 package agendaTransferencias.controller.transferencia;
 
+import static agendaTransferencias.utils.TipoTransferenciaUtils.getTipoTransferenciaChoices;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import agendaTransferencias.model.domain.Transferencia;
 import agendaTransferencias.service.transferencia.TransferenciaService;
+import agendaTransferencias.utils.validator.TransferenciaValidator;
 
 /**
  * Controller para a página de cadastro de transferências.
@@ -47,6 +50,7 @@ public class CadastroTransferenciaController {
         if (!model.containsAttribute("transferencia")) {
             model.addAttribute("transferencia", new Transferencia());
         }
+        model.addAttribute("tiposTransferencia", getTipoTransferenciaChoices());
         return new ModelAndView("cadastroTransferencia", model.asMap());
     }
 
@@ -67,7 +71,6 @@ public class CadastroTransferenciaController {
             try {
                 this.transferenciaService.save(transferencia);
                 model.addAttribute("msgSuccess", "Cadastro realizado com sucesso");
-                model.addAttribute("transferencia", new Transferencia());
             } catch (Exception e) {
                 model.addAttribute("msgError", "Não foi possível realizar o cadastro");
                 model.addAttribute("transferencia", transferencia);

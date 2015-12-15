@@ -1,7 +1,10 @@
 package agendaTransferencias.controller.transferencia;
 
+import static agendaTransferencias.utils.TipoTransferenciaUtils.getTipoTransferenciaChoices;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,12 +35,41 @@ public class PesquisaTransferenciaController {
 	 */
 	@RequestMapping(value="realizarPesquisaTransferencia", method = RequestMethod.POST)	
 	public ModelAndView realizarPesquisa(Model model, @ModelAttribute("pesquisaModel") PesquisaTranferenciaModel pesquisaModel) {
-		
 		model.addAttribute("transferencias", this.transferenciaService.findTransferenciasBy(pesquisaModel));
-		model.addAttribute("pesquisaModel", pesquisaModel);
-		
-		return new ModelAndView("consutlaTransferencias", model.asMap());
+		return this.criaPaginaPesquisa(model);
 		
 	}
 	
+	/**
+	 * Método responsável por construir um {@link PesquisaTranferenciaModel} e adicionar no {@link Model} da página
+	 * 
+	 * @param model {@link Model} da página
+	 * @return página de pesquisa de transferências
+	 */
+	@RequestMapping("/transferencias")
+    public ModelAndView criaPaginaPesquisa(Model model) {
+		if (!model.containsAttribute("pesquisaModel")) {
+			model.addAttribute("pesquisaModel", new PesquisaTranferenciaModel());
+		}
+		if (!model.containsAttribute("tiposTransferencia")) {
+			model.addAttribute("tiposTransferencia", getTipoTransferenciaChoices());
+		}
+		if (!model.containsAttribute("transferencias")) {
+			model.addAttribute("transferencias", this.transferenciaService.findAll());
+		}
+		return new ModelAndView("consutlaTransferencias", model.asMap());
+    }
+
+	/**
+	 * Método responsável por remover uma tranferência da base de dados.
+	 * 
+	 * @param id id da transferência que deve ser removida.
+	 * @return página de pesquisa de transferências após a remoção.
+	 */
+	@RequestMapping(value="excluirTransferencia", method = RequestMethod.GET)	
+	public ModelAndView excluirTransferencia(@ModelAttribute("id") Long id) {
+		this.transferenciaService.remove(id);
+		return this.criaPaginaPesquisa(new ExtendedModelMap());
+	}
+	  
 }
