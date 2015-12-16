@@ -1,7 +1,8 @@
 package agendaTransferencias.utils.calculadora;
 
+import static agendaTransferencias.utils.calculadora.CalculadoraTaxaUtils.arredondaTaxa;
+
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,6 @@ public class CalculadoraTaxaA implements CalculadoraTaxa {
     @Override
     public BigDecimal calcularTaxa(Transferencia transferencia) {
         BigDecimal percentualCobrado = new BigDecimal("0.03");
-        return new BigDecimal("2").add(percentualCobrado.multiply(transferencia.getValor())).setScale(2, RoundingMode.HALF_EVEN);
+        return arredondaTaxa(new BigDecimal("2").add(percentualCobrado.multiply(transferencia.getValor())));
     }
 }

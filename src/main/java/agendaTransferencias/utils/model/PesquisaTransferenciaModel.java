@@ -16,7 +16,7 @@ import agendaTransferencias.utils.TipoTransferencia;
  * @author danilo.possarle
  * @created Dec 12, 2015
  */
-public class PesquisaTranferenciaModel implements Serializable {
+public class PesquisaTransferenciaModel implements Serializable {
 
     private String contaOrigem;
 

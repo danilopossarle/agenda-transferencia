@@ -13,7 +13,7 @@ import agendaTransferencias.model.dao.TransferenciaDAO;
 import agendaTransferencias.model.domain.Transferencia;
 import agendaTransferencias.utils.calculadora.CalculadoraTaxa;
 import agendaTransferencias.utils.factory.CalculadoraTaxaFactory;
-import agendaTransferencias.utils.model.PesquisaTranferenciaModel;
+import agendaTransferencias.utils.model.PesquisaTransferenciaModel;
 
 /**
  * Serviço para transferência
@@ -33,10 +33,10 @@ public class TransferenciaService {
     /**
      * Realiza a busca com base no model informado.
      * 
-     * @param pesquisaModel {@link PesquisaTranferenciaModel}
+     * @param pesquisaModel {@link PesquisaTransferenciaModel}
      * @return {@link List} de {@link Transferencia} de acordo com as informações do model
      */
-    public List<Transferencia> findTransferenciasBy(PesquisaTranferenciaModel pesquisaModel) {
+    public List<Transferencia> findTransferenciasBy(PesquisaTransferenciaModel pesquisaModel) {
         return this.transferenciaDAO.findBy(pesquisaModel.getDataTransferencia(), pesquisaModel.getDataCadastro(),
                 pesquisaModel.getContaOrigem(), pesquisaModel.getContaDestino(), pesquisaModel.getValor(), pesquisaModel.getTipo());
     }

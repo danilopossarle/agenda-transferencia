@@ -1,9 +1,9 @@
 package agendaTransferencias.utils.calculadora;
 
-import static org.joda.time.Days.daysBetween;
+import static agendaTransferencias.utils.calculadora.CalculadoraTaxaUtils.arredondaTaxa;
+import static agendaTransferencias.utils.calculadora.CalculadoraTaxaUtils.calculaQuantidadeDias;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 import org.springframework.stereotype.Component;
 
@@ -24,10 +24,10 @@ public class CalculadoraTaxaB implements CalculadoraTaxa {
      */
     @Override
     public BigDecimal calcularTaxa(Transferencia transferencia) {
-        int intervaloEmDias = daysBetween(transferencia.getDataCadastro(), transferencia.getDataTransferencia()).getDays();
+        int intervaloEmDias = calculaQuantidadeDias(transferencia.getDataCadastro(), transferencia.getDataTransferencia());
         if (intervaloEmDias <= 30) {
-            return BigDecimal.TEN.setScale(2, RoundingMode.HALF_EVEN);
+            return arredondaTaxa(BigDecimal.TEN);
         }
-        return new BigDecimal("8").setScale(2, RoundingMode.HALF_EVEN);
+        return arredondaTaxa(new BigDecimal("8"));
     }
 }

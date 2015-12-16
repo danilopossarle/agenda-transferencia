@@ -1,5 +1,6 @@
 package agendaTransferencias.utils.calculadora;
 
+import static agendaTransferencias.utils.calculadora.CalculadoraTaxaUtils.arredondaTaxa;
 import static java.math.BigDecimal.TEN;
 
 import java.math.BigDecimal;
@@ -23,16 +24,16 @@ import agendaTransferencias.model.domain.Transferencia;
 @RunWith(MockitoJUnitRunner.class)
 public class CalculadoraTaxaATest {
 
-	@Mock
-	private Transferencia transferencia;
-	
-	@InjectMocks
-	private CalculadoraTaxaA calculadoraTaxaA;
-	
-	@Test
-	public void calculaTaxa() {
-		Mockito.when(this.transferencia.getValor()).thenReturn(TEN);
-		Assert.assertEquals(new BigDecimal("2.30"), this.calculadoraTaxaA.calcularTaxa(this.transferencia));
-	}
-	
+    @Mock
+    private Transferencia transferencia;
+
+    @InjectMocks
+    private CalculadoraTaxaA calculadoraTaxaA;
+
+    @Test
+    public void calculaTaxa() {
+        Mockito.when(this.transferencia.getValor()).thenReturn(TEN);
+        Assert.assertEquals(arredondaTaxa(new BigDecimal("2.30")), this.calculadoraTaxaA.calcularTaxa(this.transferencia));
+    }
+
 }

@@ -1,9 +1,9 @@
 package agendaTransferencias.utils.calculadora;
 
-import static org.joda.time.Days.daysBetween;
+import static agendaTransferencias.utils.calculadora.CalculadoraTaxaUtils.arredondaTaxa;
+import static agendaTransferencias.utils.calculadora.CalculadoraTaxaUtils.calculaQuantidadeDias;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 import org.springframework.stereotype.Component;
 
@@ -24,25 +24,25 @@ public class CalculadoraTaxaC implements CalculadoraTaxa {
      */
     @Override
     public BigDecimal calcularTaxa(Transferencia transferencia) {
-        int intervaloEmDias = daysBetween(transferencia.getDataCadastro(), transferencia.getDataTransferencia()).getDays();
+        int intervaloEmDias = calculaQuantidadeDias(transferencia.getDataCadastro(), transferencia.getDataTransferencia());
         if (intervaloEmDias <= 5) {
-            return new BigDecimal("8.3").setScale(2, RoundingMode.HALF_EVEN);
+            return arredondaTaxa(new BigDecimal("8.3"));
         }
         if (intervaloEmDias <= 10) {
-            return new BigDecimal("7.4").setScale(2, RoundingMode.HALF_EVEN);
+            return arredondaTaxa(new BigDecimal("7.4"));
         }
         if (intervaloEmDias <= 15) {
-            return new BigDecimal("6.7").setScale(2, RoundingMode.HALF_EVEN);
+            return arredondaTaxa(new BigDecimal("6.7"));
         }
         if (intervaloEmDias <= 20) {
-            return new BigDecimal("5.4").setScale(2, RoundingMode.HALF_EVEN);
+            return arredondaTaxa(new BigDecimal("5.4"));
         }
         if (intervaloEmDias <= 25) {
-            return new BigDecimal("4.3").setScale(2, RoundingMode.HALF_EVEN);
+            return arredondaTaxa(new BigDecimal("4.3"));
         }
         if (intervaloEmDias <= 30) {
-            return new BigDecimal("2.1").setScale(2, RoundingMode.HALF_EVEN);
+            return arredondaTaxa(new BigDecimal("2.1"));
         }
-        return new BigDecimal("1.2").setScale(2, RoundingMode.HALF_EVEN);
+        return arredondaTaxa(new BigDecimal("1.2"));
     }
 }

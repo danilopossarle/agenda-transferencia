@@ -14,7 +14,7 @@
 	<definition name="home" extends="estrutura">
 		<put-attribute name="body" value="/WEB-INF/tiles/view/home/index.jsp" />
 	</definition>
-	<definition name="consutlaTransferencias" extends="estrutura">
+	<definition name="consultaTransferencias" extends="estrutura">
 		<put-attribute name="scriptsCss" value="/WEB-INF/tiles/view/transferencia/consulta/scriptsCss.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/tiles/view/transferencia/consulta/index.jsp" />
 	</definition>
