@@ -80,6 +80,10 @@ body>.container {
 	width: 910px;
 }
 
+.wrap ol {
+	margin: 20px 0 20px 50px;
+}
+
 .container .content {
 	padding-bottom: 110px;
 	padding-top: 20px;

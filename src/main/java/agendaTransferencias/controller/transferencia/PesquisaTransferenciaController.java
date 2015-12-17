@@ -2,6 +2,8 @@ package agendaTransferencias.controller.transferencia;
 
 import static agendaTransferencias.utils.TipoTransferenciaUtils.getTipoTransferenciaChoices;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import agendaTransferencias.model.domain.Transferencia;
 import agendaTransferencias.service.transferencia.TransferenciaService;
 import agendaTransferencias.utils.model.PesquisaTransferenciaModel;
 
@@ -35,7 +38,11 @@ public class PesquisaTransferenciaController {
      */
     @RequestMapping(value = "realizarPesquisaTransferencia", method = RequestMethod.POST)
     public ModelAndView realizarPesquisa(Model model, @ModelAttribute("pesquisaModel") PesquisaTransferenciaModel pesquisaModel) {
-        model.addAttribute("transferencias", this.transferenciaService.findTransferenciasBy(pesquisaModel));
+        List<Transferencia> transferencias = this.transferenciaService.findTransferenciasBy(pesquisaModel);
+		model.addAttribute("transferencias", transferencias);
+		if(transferencias.isEmpty()){
+			model.addAttribute("msgError", "Não foi encontrada nenhuma transferência para os parâmetros informados.");
+		}
         return this.criaPaginaPesquisa(model);
 
     }
