@@ -1,8 +1,7 @@
 package agendaTransferencias.service.transferencia;
 
-import static agendaTransferencias.utils.TipoTransferencia.A;
+import static agendaTransferencias.utils.builder.TransferenciaBuilder.umaTransferencia;
 import static java.math.BigDecimal.ONE;
-import static java.math.BigDecimal.TEN;
 import static java.util.Arrays.asList;
 import static org.mockito.Mockito.when;
 
@@ -61,8 +60,8 @@ public class TransferenciaServiceTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        TRANSFERENCIA_AMANHA = this.criaTransferenciaParaData(DATA_AMANHA);
-        TRANSFERENCIA_2_DIAS = this.criaTransferenciaParaData(DATA_2_DIAS);
+        TRANSFERENCIA_AMANHA = umaTransferencia().comDataTransferencia(DATA_AMANHA).build();
+        TRANSFERENCIA_2_DIAS = umaTransferencia().comDataTransferencia(DATA_2_DIAS).build();
     }
 
     @Test
@@ -87,15 +86,4 @@ public class TransferenciaServiceTest {
         Assert.assertEquals(ONE, this.transferenciaService.calculaTaxa(TRANSFERENCIA_AMANHA));
     }
 
-    private Transferencia criaTransferenciaParaData(DateTime dataTransferencia) {
-        Transferencia transferencia = new Transferencia();
-        transferencia.setContaDestino(CONTA_DESTINO);
-        transferencia.setContaOrigem(CONTA_ORIGEM);
-        transferencia.setDataCadastro(DATA_HOJE);
-        transferencia.setDataTransferencia(dataTransferencia);
-        transferencia.setTaxa(ONE);
-        transferencia.setValor(TEN);
-        transferencia.setTipo(A);
-        return transferencia;
-    }
 }

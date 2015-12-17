@@ -1,8 +1,6 @@
 package agendaTransferencias.utils.validator;
 
-import static agendaTransferencias.utils.TipoTransferencia.A;
-import static java.math.BigDecimal.ONE;
-import static java.math.BigDecimal.TEN;
+import static agendaTransferencias.utils.builder.TransferenciaBuilder.umaTransferencia;
 
 import org.joda.time.DateTime;
 import org.junit.Assert;
@@ -23,13 +21,9 @@ public class TransferenciaValidatorTest {
 
     private static final String CONTA_ORIGEM = "65432-1";
 
-    private static final String CONTA_DESTINO = "12345-6";
-
     private static final String CONTA_INVALIDA = "123456";
 
     private static final DateTime DATA_CADASTRO = new DateTime().withTimeAtStartOfDay();
-
-    private static final DateTime DATA_TRANSFERENCIA = DATA_CADASTRO.plusDays(10);
 
     private static final DateTime DATA_TRANSFERENCIA_ANTERIOR = DATA_CADASTRO.minusDays(10);
 
@@ -48,7 +42,7 @@ public class TransferenciaValidatorTest {
 
     @Test
     public void transferenciaValida() {
-        Transferencia transferencia = this.criaTransferenciaValida();
+        Transferencia transferencia = umaTransferencia().build();
         BindException errors = new BindException(transferencia, "transferencia");
         ValidationUtils.invokeValidator(this.transferenciaValidator, transferencia, errors);
         Assert.assertFalse(errors.hasErrors());
@@ -56,8 +50,7 @@ public class TransferenciaValidatorTest {
 
     @Test
     public void erroContaOrigemInvalida() {
-        Transferencia transferencia = this.criaTransferenciaValida();
-        transferencia.setContaOrigem(CONTA_INVALIDA);
+        Transferencia transferencia = umaTransferencia().comContaOrigem(CONTA_INVALIDA).build();
         BindException errors = new BindException(transferencia, "transferencia");
         ValidationUtils.invokeValidator(this.transferenciaValidator, transferencia, errors);
         Assert.assertTrue(errors.hasErrors());
@@ -67,8 +60,7 @@ public class TransferenciaValidatorTest {
 
     @Test
     public void erroContaDestinoInvalida() {
-        Transferencia transferencia = this.criaTransferenciaValida();
-        transferencia.setContaDestino(CONTA_INVALIDA);
+        Transferencia transferencia = umaTransferencia().comContaDestino(CONTA_INVALIDA).build();
         BindException errors = new BindException(transferencia, "transferencia");
         ValidationUtils.invokeValidator(this.transferenciaValidator, transferencia, errors);
         Assert.assertTrue(errors.hasErrors());
@@ -78,9 +70,7 @@ public class TransferenciaValidatorTest {
 
     @Test
     public void erroContasIguais() {
-        Transferencia transferencia = this.criaTransferenciaValida();
-        transferencia.setContaOrigem(CONTA_ORIGEM);
-        transferencia.setContaDestino(CONTA_ORIGEM);
+        Transferencia transferencia = umaTransferencia().comContaOrigem(CONTA_ORIGEM).comContaDestino(CONTA_ORIGEM).build();
         BindException errors = new BindException(transferencia, "transferencia");
         ValidationUtils.invokeValidator(this.transferenciaValidator, transferencia, errors);
         Assert.assertTrue(errors.hasErrors());
@@ -93,8 +83,7 @@ public class TransferenciaValidatorTest {
 
     @Test
     public void erroDatasIguais() {
-        Transferencia transferencia = this.criaTransferenciaValida();
-        transferencia.setDataTransferencia(DATA_CADASTRO);
+        Transferencia transferencia = umaTransferencia().comDataCadastro(DATA_CADASTRO).comDataTransferencia(DATA_CADASTRO).build();
         BindException errors = new BindException(transferencia, "transferencia");
         ValidationUtils.invokeValidator(this.transferenciaValidator, transferencia, errors);
         Assert.assertTrue(errors.hasErrors());
@@ -104,25 +93,12 @@ public class TransferenciaValidatorTest {
 
     @Test
     public void erroDataTransferenciaAnteriorDataCadastro() {
-        Transferencia transferencia = this.criaTransferenciaValida();
-        transferencia.setDataTransferencia(DATA_TRANSFERENCIA_ANTERIOR);
+        Transferencia transferencia = umaTransferencia().comDataCadastro(DATA_CADASTRO).comDataTransferencia(DATA_TRANSFERENCIA_ANTERIOR).build();
         BindException errors = new BindException(transferencia, "transferencia");
         ValidationUtils.invokeValidator(this.transferenciaValidator, transferencia, errors);
         Assert.assertTrue(errors.hasErrors());
         Assert.assertEquals(1, errors.getFieldErrorCount("dataTransferencia"));
         Assert.assertEquals("dataTransferencia.after.dataCadastro", errors.getFieldError("dataTransferencia").getCode());
-    }
-
-    private Transferencia criaTransferenciaValida() {
-        Transferencia transferencia = new Transferencia();
-        transferencia.setContaDestino(CONTA_DESTINO);
-        transferencia.setContaOrigem(CONTA_ORIGEM);
-        transferencia.setDataCadastro(DATA_CADASTRO);
-        transferencia.setDataTransferencia(DATA_TRANSFERENCIA);
-        transferencia.setTaxa(ONE);
-        transferencia.setValor(TEN);
-        transferencia.setTipo(A);
-        return transferencia;
     }
 
 }
