@@ -5,9 +5,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -32,11 +29,7 @@ public abstract class GenericDAO<BO extends Persistable> implements DAO<BO> {
      */
     @Override
     public List<BO> findAll() {
-        CriteriaBuilder critBuilder = this.entityManager.getCriteriaBuilder();
-        CriteriaQuery<BO> criteriaQuery = critBuilder.createQuery(this.getPersistableClass());
-        Root<BO> variableRoot = criteriaQuery.from(this.getPersistableClass());
-        criteriaQuery.select(variableRoot);
-        return this.entityManager.createQuery(criteriaQuery).getResultList();
+        return this.createCriteria().list();
     }
 
     /**
@@ -57,21 +50,21 @@ public abstract class GenericDAO<BO extends Persistable> implements DAO<BO> {
     public void save(BO entity) {
         this.entityManager.persist(entity);
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
     public void remove(BO entity) {
-    	this.entityManager.remove(entity);
+        this.entityManager.remove(entity);
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
     public void remove(Serializable id) {
-    	this.remove(this.findById(id));
+        this.remove(this.findById(id));
     }
 
     /**

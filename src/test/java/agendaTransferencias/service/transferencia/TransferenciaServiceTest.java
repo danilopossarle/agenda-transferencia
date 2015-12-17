@@ -52,10 +52,6 @@ public class TransferenciaServiceTest {
 
     private static final DateTime DATA_2_DIAS = DATA_HOJE.plusDays(2);
 
-    private static final String CONTA_ORIGEM = "65432-1";
-
-    private static final String CONTA_DESTINO = "12345-6";
-
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);

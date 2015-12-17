@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,10 +38,10 @@ public class PesquisaTransferenciaController {
     @RequestMapping(value = "realizarPesquisaTransferencia", method = RequestMethod.POST)
     public ModelAndView realizarPesquisa(Model model, @ModelAttribute("pesquisaModel") PesquisaTransferenciaModel pesquisaModel) {
         List<Transferencia> transferencias = this.transferenciaService.findTransferenciasBy(pesquisaModel);
-		model.addAttribute("transferencias", transferencias);
-		if(transferencias.isEmpty()){
-			model.addAttribute("msgError", "Não foi encontrada nenhuma transferência para os parâmetros informados.");
-		}
+        model.addAttribute("transferencias", transferencias);
+        if (transferencias.isEmpty()) {
+            model.addAttribute("msgError", "Não foi encontrada nenhuma transferência para os parâmetros informados.");
+        }
         return this.criaPaginaPesquisa(model);
 
     }
@@ -74,9 +73,10 @@ public class PesquisaTransferenciaController {
      * @return página de pesquisa de transferências após a remoção.
      */
     @RequestMapping(value = "excluirTransferencia", method = RequestMethod.GET)
-    public ModelAndView excluirTransferencia(@ModelAttribute("id") Long id) {
+    public ModelAndView excluirTransferencia(Model model, @ModelAttribute("id") Long id) {
         this.transferenciaService.remove(id);
-        return this.criaPaginaPesquisa(new ExtendedModelMap());
+        model.addAttribute("msgSuccess", "Registro removido com sucesso");
+        return this.criaPaginaPesquisa(model);
     }
 
 }

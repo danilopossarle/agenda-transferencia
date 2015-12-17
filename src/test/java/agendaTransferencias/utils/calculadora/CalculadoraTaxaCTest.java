@@ -32,93 +32,95 @@ public class CalculadoraTaxaCTest {
 
     @Test
     public void calculaTaxaIntervaloMenorQue5() {
-        this.mockIntervalo(3);
+        this.mockTransferencia(3);
         Assert.assertEquals(arredondaTaxa(new BigDecimal("8.3")), this.calculadoraTaxaC.calcularTaxa(this.transferencia));
     }
 
     @Test
     public void calculaTaxaIntervaloIgualA5() {
-        this.mockIntervalo(5);
+        this.mockTransferencia(5);
         Assert.assertEquals(arredondaTaxa(new BigDecimal("8.3")), this.calculadoraTaxaC.calcularTaxa(this.transferencia));
     }
 
     @Test
     public void calculaTaxaIntervaloEntre5e10() {
-        this.mockIntervalo(8);
+        this.mockTransferencia(8);
         Assert.assertEquals(arredondaTaxa(new BigDecimal("7.4")), this.calculadoraTaxaC.calcularTaxa(this.transferencia));
     }
 
     @Test
     public void calculaTaxaIntervaloIgualA10() {
-        this.mockIntervalo(10);
+        this.mockTransferencia(10);
         Assert.assertEquals(arredondaTaxa(new BigDecimal("7.4")), this.calculadoraTaxaC.calcularTaxa(this.transferencia));
     }
 
     @Test
     public void calculaTaxaIntervaloEntre10e15() {
-        this.mockIntervalo(13);
+        this.mockTransferencia(13);
         Assert.assertEquals(arredondaTaxa(new BigDecimal("6.7")), this.calculadoraTaxaC.calcularTaxa(this.transferencia));
     }
 
     @Test
     public void calculaTaxaIntervaloIgualA15() {
-        this.mockIntervalo(15);
+        this.mockTransferencia(15);
         Assert.assertEquals(arredondaTaxa(new BigDecimal("6.7")), this.calculadoraTaxaC.calcularTaxa(this.transferencia));
     }
 
     @Test
     public void calculaTaxaIntervaloEntre15e20() {
-        this.mockIntervalo(18);
+        this.mockTransferencia(18);
         Assert.assertEquals(arredondaTaxa(new BigDecimal("5.4")), this.calculadoraTaxaC.calcularTaxa(this.transferencia));
     }
 
     @Test
     public void calculaTaxaIntervaloIgualA20() {
-        this.mockIntervalo(20);
+        this.mockTransferencia(20);
         Assert.assertEquals(arredondaTaxa(new BigDecimal("5.4")), this.calculadoraTaxaC.calcularTaxa(this.transferencia));
     }
 
     @Test
     public void calculaTaxaIntervaloEntre20e25() {
-        this.mockIntervalo(23);
+        this.mockTransferencia(23);
         Assert.assertEquals(arredondaTaxa(new BigDecimal("4.3")), this.calculadoraTaxaC.calcularTaxa(this.transferencia));
     }
 
     @Test
     public void calculaTaxaIntervaloIgualA25() {
-        this.mockIntervalo(25);
+        this.mockTransferencia(25);
         Assert.assertEquals(arredondaTaxa(new BigDecimal("4.3")), this.calculadoraTaxaC.calcularTaxa(this.transferencia));
     }
 
     @Test
     public void calculaTaxaIntervaloEntre25e30() {
-        this.mockIntervalo(28);
+        this.mockTransferencia(28);
         Assert.assertEquals(arredondaTaxa(new BigDecimal("2.1")), this.calculadoraTaxaC.calcularTaxa(this.transferencia));
     }
 
     @Test
     public void calculaTaxaIntervaloIgualA30() {
-        this.mockIntervalo(30);
+        this.mockTransferencia(30);
         Assert.assertEquals(arredondaTaxa(new BigDecimal("2.1")), this.calculadoraTaxaC.calcularTaxa(this.transferencia));
     }
 
     @Test
     public void calculaTaxaIntervaloMaiorQue30() {
-        this.mockIntervalo(40);
+        this.mockTransferencia(40);
         Assert.assertEquals(arredondaTaxa(new BigDecimal("1.2")), this.calculadoraTaxaC.calcularTaxa(this.transferencia));
     }
 
     /**
      * Define as datas de cadastro e transferência, sendo que a data de cadastro será data atual do sistema e a data de transferência será
-     * data atual do sistema acrescida da quantidade de dias informada.
+     * data atual do sistema acrescida da quantidade de dias informada. Além disso define o valor da transferência como sendo
+     * {@link BigDecimal.CEM}
      * 
      * @param diasIntervalo quantidade de dias entre a data de cadastro e a data que a transferência será realizada
      */
-    private void mockIntervalo(int diasIntervalo) {
+    private void mockTransferencia(int diasIntervalo) {
         DateTime dataCadastro = new DateTime();
         DateTime dataTransferencia = dataCadastro.plusDays(diasIntervalo);
         Mockito.when(this.transferencia.getDataCadastro()).thenReturn(dataCadastro);
         Mockito.when(this.transferencia.getDataTransferencia()).thenReturn(dataTransferencia);
+        Mockito.when(this.transferencia.getValor()).thenReturn(new BigDecimal("100"));
     }
 
 }

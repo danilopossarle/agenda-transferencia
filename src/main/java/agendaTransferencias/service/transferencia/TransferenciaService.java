@@ -71,6 +71,12 @@ public class TransferenciaService {
 
     }
 
+    /**
+     * Realiza o calculo da taxa para uma {@link Transferencia}
+     * 
+     * @param transferencia {@link Transferencia} para a qual a taxa deve ser calculada
+     * @return a taxa calculada
+     */
     public BigDecimal calculaTaxa(Transferencia transferencia) {
         CalculadoraTaxa calculadora = this.calculadoraFactory.calculadoraPara(transferencia.getTipo());
         if (calculadora != null) {

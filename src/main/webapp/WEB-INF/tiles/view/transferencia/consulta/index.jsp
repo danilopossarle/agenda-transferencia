@@ -11,36 +11,30 @@
 					<td class="label" class="label"><label for="contaOrigem">Conta Origem:</label></td>
 					<td>
 						<sf:input path="contaOrigem" cssClass="conta" /><br/>
-						<sf:errors path="contaOrigem" cssClass="error"/>
 					</td>
 					<td class="label"><label for="contaDestino">Conta Destino:</label></td>
 					<td>
 						<sf:input path="contaDestino" cssClass="conta" /><br/>
-						<sf:errors path="contaDestino" cssClass="error"/>
 					</td>
 				</tr>
 				<tr>
 					<td class="label"><label for="dataTransferencia">Data da Transferência:</label></td>
 					<td>
 						<sf:input path="dataTransferencia" cssClass="data" /><br/>
-						<sf:errors path="dataTransferencia" cssClass="error"/>
 					</td>
 					<td class="label"><label for="dataCadastro">Data de Cadastro:</label></td>
 					<td>
 						<sf:input path="dataCadastro" cssClass="data" /><br/>
-						<sf:errors path="dataCadastro" cssClass="error"/>
 					</td>
 				</tr>
 				<tr>
 					<td class="label"><label for="tipo">Tipo:</label></td>
 					<td>
 						<sf:select path="tipo" items="${tiposTransferencia}" /><br/>
-						<sf:errors path="tipo" cssClass="error"/>
 					</td>
 					<td class="label"><label for="valor">Valor:</label></td>
 					<td>
 						<sf:input path="valor" cssClass="money" /><br/>
-						<sf:errors path="valor" cssClass="error"/>
 					</td>
 				</tr>
 				<tr>

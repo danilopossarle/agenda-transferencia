@@ -91,16 +91,15 @@ public class PesquisaTransferenciaControllerTest {
 
     @Test
     public void excluirTransferencia() throws Exception {
-        List<Transferencia> transferencias = Arrays.asList(this.transferencia1, this.transferencia2);
+        List<Transferencia> transferencias = Arrays.asList(this.transferencia2);
         when(this.transferenciaService.findAll()).thenReturn(transferencias);
-        when(this.transferencia1.getId()).thenReturn(1L);
         when(this.transferencia2.getId()).thenReturn(2L);
         
         this.mockMvc.perform(get("/excluirTransferencia").param("id", "1"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("consultaTransferencias"))
-                .andExpect(model().attribute("transferencias", hasSize(2)))
-                .andExpect(model().attribute("transferencias", hasItem(allOf(hasProperty("id", is(1L))))))
+                .andExpect(model().attribute("msgSuccess", "Registro removido com sucesso"))
+                .andExpect(model().attribute("transferencias", hasSize(1)))
                 .andExpect(model().attribute("transferencias", hasItem(allOf(hasProperty("id", is(2L))))));
     }
 }
